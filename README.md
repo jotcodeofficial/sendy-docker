@@ -57,7 +57,7 @@ The following starts an instance specifying an environment file.
 $ docker run -d -name sendy --env_file sendy.env -p 80:80 sendy
 ```
 
-### Sample environment file
+### Sample environment file (sendy.env)
 ```ini
 SENDY_FQDN=campaigns.example.com
 MYSQL_HOST=db_sendy
