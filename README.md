@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-Coming Soon
-=======
 # Quick reference
 This is the unofficial Sendy docker repository.
 
@@ -77,7 +74,7 @@ The following starts an instance specifying an environment file.
 $ docker run -d -name sendy --env_file sendy.env -p 80:80 sendy
 ```
 
-### Sample environment file
+### Sample environment file (sendy.env)
 ```ini
 SENDY_FQDN=campaigns.example.com
 MYSQL_HOST=db_sendy
@@ -188,4 +185,3 @@ Please [see license](https://raw.githubusercontent.com/bubbajames-docker/sendy/m
 As with all Docker images, these likely also contain other software that may be under other licenses (such as Bash, etc from the base distribution, along with any direct or indirect dependencies of the primary software being contained).
 
 As for any pre-built image usage, it is the image user's responsibility to ensure that any use of this image complies with any relevant licenses for all software contained within.
->>>>>>> initial commit
