@@ -1,19 +1,18 @@
+# Introduction
+Welcome to sendy-docker (Sendy Docker for Kubernetes).
+
+
 # Quick reference
-This is the unofficial Sendy docker repository.
-
-<a href="https://sendy.co/?ref=Hcurv" title=""><img src="https://sendy.co/images/banners/728x90_var2.jpg" alt="Check out Sendy, a self hosted newsletter app that lets you send emails 100x cheaper via Amazon SES." width="728" height="90"/></a>
-
-* Maintained by: [Sendy Users](https://github.com/bubbajames-docker/sendy)
-
-* Where to get help: [the Sendy Troubleshooting & Support Guide](https://sendy.co/troubleshooting), [the Sendy Community Forums](https://sendy.co/forum)
-
-* License Required: [Purchasing details](https://sendy.co/?ref=Hcurv)
+* Where to file issues: [https://github.com/jotcodeofficial/sendy-docker/issues](https://github.com/jotcodeofficial/sendy-docker/issues)
 
 
-# Quick reference (cont.)
-* Where to file docker-related issues: [https://github.com/bubbajames-docker/sendy/issues](https://github.com/bubbajames-docker/sendy/issues)
+# What is sendy-docker
+Sendy Docker for Kubernetes is a docker image based on the one created by bubbajames.
+If you just want a docker version and are not using kubernetes then check out his repo:
+[https://github.com/bubbajames-docker/sendy](https://github.com/bubbajames-docker/sendy)
 
-* Where to file application issues: see [the Sendy Troubleshooting & Support Guide](https://sendy.co/troubleshooting)
+For more information and related blog posts, please visit [Jotcode.com](https://jotcode.com).
+
 
 # What is Sendy?
 Sendy is a self-hosted email newsletter application that lets you send trackable emails via [Amazon Simple Email Service (SES)](http://aws.amazon.com/ses/). This makes it possible for you to send authenticated bulk emails at an insanely low price without sacrificing deliverability.
@@ -23,17 +22,9 @@ For more information and related downloads for Sendy Server and other products, 
 <a href="https://sendy.co/?ref=Hcurv" title=""><img src="https://sendy.co/images/banners/125x125_var2.jpg" alt="Check out Sendy, a self hosted newsletter app that lets you send emails 100x cheaper via Amazon SES." width="125" height="125"/></a>
 
 # How to use this image
-Starting a Sendy instance is simple. 
-
-```console
-$ docker run -d \
-  --name sendy \
-  -e SENDY_FQDN=campaigns.example.com \
-  -e MYSQL_HOST=db_sendy \
-  -e MYSQL_PASSWORD=db_password \
-  bubbajames/sendy:tag
-```
-... where `sendy` is the name you want to assign to your container, `campaigns.example.com` is your FQDN of Sendy server, `db_sendy` is your database server instance, `db_password` is the database user's password and `tag` is the tag specifying the Sendy version you want. See the list of tags above.
+You can build your application by forking the sendy-kube repo which will auto use this image.
+Or you can pull this docker image if you want to build your project from scratch (or import into an existing project) by using:
+[https://hub.docker.com/r/jotcode/sendy-docker](https://hub.docker.com/r/jotcode/sendy-docker)
 
 ## Environment Varaibles 
 ### `SENDY_PROTOCOL` (Optional)  
@@ -49,20 +40,12 @@ Database user.  Default: `sendy`.
 ### `MYSQL_PASSWORD` (required)
 Database user's password. Not recommended for sensitive data! (see: Docker Secrets)
 
-## Docker Secrets
-As an alternative to passing sensitive information via environment variables, `_FILE` may be appended to the previously listed environment variables, causing the initialization script to load the values for those variables from files present in the container. In particular, this can be used to load passwords from Docker secrets stored in /run/secrets/\<secret_name> files. (See [repository](https://github.com/bubbajames-docker/sendy) for sample secrets)
-
-For example:
-
-```console
-$ docker run -d --name sendy -e MYSQL_PASSWORD_FILE=/run/secrets/mysql-root -d sendy
-```
 
 ## Using `Dockerfile`
-Pretty minimalistic `Dockerfile` as everything you need is already bundled.  Just provide environment variables or environment file.
+Pretty minimalistic `Dockerfile` as everything you need is already bundled.  Just provide environment variables.
 
 ```dockerfile
-FROM bubbajames/sendy:4.1
+FROM jotcode/sendy-docker:5.2
 
 # ... additional apache/php configurations here ... 
 # e.g. copy your SSL Certificate and apache configurations if not using a load balancer.  
@@ -74,7 +57,7 @@ The following starts an instance specifying an environment file.
 $ docker run -d -name sendy --env_file sendy.env -p 80:80 sendy
 ```
 
-### Sample environment file (sendy.env)
+### Sample environment file
 ```ini
 SENDY_FQDN=campaigns.example.com
 MYSQL_HOST=db_sendy
