@@ -1,10 +1,3 @@
 .vscode
 **/.DS_Store
-<<<<<<< HEAD
-<<<<<<< HEAD
 *.env
-=======
->>>>>>> ignore env files
-=======
-*.env
->>>>>>> added gitignore
